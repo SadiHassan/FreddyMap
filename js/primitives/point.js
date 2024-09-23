@@ -9,7 +9,6 @@ class Point {
     }
 
     draw(ctx, size = 18, color = "black") {
-        console.log("Inside -- points draw");
         const rad = size / 2;
         ctx.beginPath();
         ctx.fillStyle = color;
