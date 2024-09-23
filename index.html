@@ -35,31 +35,43 @@
 
             const graph = new Graph([p1, p2, p3, p4], [s1, s2, s3, s4]);
             
-            console.log(graph);
             //draw a graph on this context
             graph.draw(ctx);
 
             function addRandomPoint() {
                 let x = Math.random() * myCanvas.width;
                 let y = Math.random() * myCanvas.height;
-
-                console.log("X: " + x);
-                console.log("Y: " + y);
                 
                 const success = graph.tryAddPoint(
                     new Point(x, y)
                 );
-                console.log(graph);
-                console.log(success);
 
                 ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
                 graph.draw(ctx);
             }
 
             function addRandomSegment() {
-
+                const index1 = Math.floor(Math.random() * graph.points.length);
+                const index2 = Math.floor(Math.random() * graph.points.length);
+                
+                const success = graph.tryAddSegment(new Segment(
+                    graph.points[index1], graph.points[index2]
+                ));
+                
+                console.log(success);
+                ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+                graph.draw(ctx);
             }
 
+            // fun experiment
+            let maxPoints = 100;
+            while (graph.points.length < maxPoints) {
+                addRandomPoint();
+            }
+            let maxSegments = 100;
+            while (graph.segments.length < maxSegments) {
+                addRandomSegment();
+            }
         </script>
     </body>
 </html>
