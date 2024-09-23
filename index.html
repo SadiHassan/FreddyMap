@@ -10,6 +10,7 @@
         <div id="controls">
             <button onclick="addRandomPoint()">Add Point</button>
             <button onclick="addRandomSegment()">Add Segment</button>
+            <button onclick="removeRandomSegment()">Remove Segment</button>
         </div>
         
         <script src="js/math/graph.js"></script>
@@ -63,7 +64,19 @@
                 graph.draw(ctx);
             }
 
+            function removeRandomSegment() {
+                if (graph.segments.length == 0) {
+                    console.log("no segment to remove!");
+                    return;
+                }
+                const index = Math.floor(Math.random() * graph.segments.length);
+                graph.removeSegment(graph.segments[index]);
+                ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+                graph.draw(ctx);
+            }
+
             // fun experiment
+            /*
             let maxPoints = 100;
             while (graph.points.length < maxPoints) {
                 addRandomPoint();
@@ -72,6 +85,7 @@
             while (graph.segments.length < maxSegments) {
                 addRandomSegment();
             }
+            */
         </script>
     </body>
 </html>
