@@ -40,6 +40,10 @@ class Graph {
         return this.segments.find((s)=>s.equals(seg));
     }
 
+    removeSegment(seg) {
+        this.segments.splice(this.segments.indexOf(seg), 1);
+    }
+
     draw() {
         for (const seg of this.segments) {
             seg.draw(ctx);
