@@ -7,13 +7,17 @@
     <body>
         <h1>World Editor</h1>
         <canvas id="myCanvas"></canvas>
-        <div id="controls"></div>
+        <div id="controls">
+            <button onclick="addRandomPoint()">Add Point</button>
+            <button onclick="addRandomSegment()">Add Segment</button>
+        </div>
         
         <script src="js/math/graph.js"></script>
         <script src="js/primitives/point.js"></script>
         <script src="js/primitives/segment.js"></script>
 
         <script>
+            
             myCanvas.width = 600;
             myCanvas.height = 600;
 
@@ -31,8 +35,31 @@
 
             const graph = new Graph([p1, p2, p3, p4], [s1, s2, s3, s4]);
             
+            console.log(graph);
             //draw a graph on this context
             graph.draw(ctx);
+
+            function addRandomPoint() {
+                let x = Math.random() * myCanvas.width;
+                let y = Math.random() * myCanvas.height;
+
+                console.log("X: " + x);
+                console.log("Y: " + y);
+                
+                const success = graph.tryAddPoint(
+                    new Point(x, y)
+                );
+                console.log(graph);
+                console.log(success);
+
+                ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+                graph.draw(ctx);
+            }
+
+            function addRandomSegment() {
+
+            }
+
         </script>
     </body>
 </html>
