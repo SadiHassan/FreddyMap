@@ -22,6 +22,14 @@ class Graph {
         return this.points.find((p) =>p.equals(point));
     }
 
+    removePoint(point) {
+        const segs = this.getSegmentsWithPoint(point);
+        for (const seg of segs) { //why not "in"
+            this.removeSegment(seg);
+        }
+        this.points.splice(this.points.indexOf(point), 1);
+    }
+
     // Segment functions
 
     addSegment(seg) {
@@ -42,6 +50,15 @@ class Graph {
 
     removeSegment(seg) {
         this.segments.splice(this.segments.indexOf(seg), 1);
+    }
+
+    getSegmentsWithPoint(point) {
+        const segs = [];
+        for (const seg of this.segments) {
+            if (seg.includes(point))
+                segs.push(seg);
+        }
+        return segs;
     }
 
     draw() {
