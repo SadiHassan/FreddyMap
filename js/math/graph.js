@@ -70,4 +70,9 @@ class Graph {
             point.draw(ctx);
         }
     }
+
+    dispose() {
+        this.points.length = 0;
+        this.segments.length = 0;
+    }
 }
