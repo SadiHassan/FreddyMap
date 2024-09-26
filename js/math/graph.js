@@ -71,7 +71,7 @@ class Graph {
         }
     }
 
-    dispose() {
+    disputose() {
         this.points.length = 0;
         this.segments.length = 0;
     }
